@@ -26,6 +26,7 @@ public abstract class AbstractContentIndexer<T extends AbstractSearchObj> implem
         doc.addField("tags", StringUtils.join(obj.tags));
         doc.addField("summary", obj.summary);
         doc.addField("language", obj.language);
+        doc.addField("url", obj.url);
         indexDoc(obj, doc);
         try {
             solr.add(doc);

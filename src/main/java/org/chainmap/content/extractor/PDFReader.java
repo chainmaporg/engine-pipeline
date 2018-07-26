@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by xingfeiy on 6/15/18.
  */
-public class PDFReader implements FileReader<GeneralPDFObj> {
+public class PDFReader implements CMFileReader<GeneralPDFObj> {
     private String path = StringUtils.EMPTY;
 
     private List<GeneralPDFObj> container = new ArrayList<>();

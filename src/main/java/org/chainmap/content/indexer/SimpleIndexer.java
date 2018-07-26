@@ -3,13 +3,11 @@ package org.chainmap.content.indexer;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
+import org.chainmap.content.extractor.PDFReader;
+import org.chainmap.content.extractor.WebContentReader;
 import org.chainmap.content.extractor.CSVReader;
 import org.chainmap.content.datatype.AbstractSearchObj;
-import org.chainmap.content.extractor.PDFReader;
-import org.chainmap.content.parser.CryptoCompanyParser;
-import org.chainmap.content.parser.CryptoEventParser;
-import org.chainmap.content.parser.CryptoICOParser;
-import org.chainmap.content.parser.ObjParser;
+import org.chainmap.content.parser.*;
 
 import java.io.IOException;
 
@@ -54,11 +52,27 @@ public class SimpleIndexer {
         indexCryptoCSVInfos("/Users/xingfeiy/githup/chainmap/chainmap/resources/cryptolist/Crypto ICOs.csv",
                 new CryptoICOIndexer(solr), new CryptoICOParser());
 
+        WebContentReader webContentReader = new WebContentReader("/Users/xingfeiy/githup/chainmap/cmp/search-engine/resources/articles", "article");
+        WebContentIndexer indexer = new WebContentIndexer(solr);
+        while (webContentReader.hasNext()) {
+            indexer.indexDoc(webContentReader.next());
+        }
+
+        webContentReader = new WebContentReader("/Users/xingfeiy/githup/chainmap/cmp/search-engine/resources/jobs", "job");
+        indexer = new WebContentIndexer(solr);
+        while (webContentReader.hasNext()) {
+            indexer.indexDoc(webContentReader.next());
+        }
+
         PDFReader pdfReader = new PDFReader("/Users/xingfeiy/githup/chainmap/chainmap/resources/whitepapers", "white_paper");
         GeneralPDFIndexer pdfIndexer = new GeneralPDFIndexer(solr);
         while (pdfReader.hasNext()) {
             pdfIndexer.indexDoc(pdfReader.next());
         }
+
+
+
+
 
         solr.commit();
     }

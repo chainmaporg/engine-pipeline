@@ -15,7 +15,7 @@ public class CryptoICOIndexer extends AbstractContentIndexer<CryptoICOInfo> {
     @Override
     protected void indexDoc(CryptoICOInfo obj, SolrInputDocument doc) {
         doc.addField("ico_name", obj.name);
-        doc.addField("url", obj.url);
+//        doc.addField("url", obj.url);
         doc.addField("twitter", obj.twitter);
         doc.addField("email", obj.email);
         doc.addField("blog", obj.blog);

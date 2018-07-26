@@ -22,4 +22,8 @@ public abstract class AbstractSearchObj {
 
     public String language = "eng";
 
+    public String url = "none";
+
+    public long id = 0l;
+
 }

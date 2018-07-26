@@ -8,8 +8,6 @@ import org.apache.commons.lang.StringUtils;
 public class CryptoICOInfo extends AbstractSearchObj {
     public String name = StringUtils.EMPTY;
 
-    public String url = StringUtils.EMPTY;
-
     public String twitter = StringUtils.EMPTY;
 
     public String email = StringUtils.EMPTY;

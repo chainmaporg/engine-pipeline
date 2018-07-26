@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by xingfeiy on 6/15/18.
  */
-public class CSVReader implements FileReader<AbstractSearchObj>{
+public class CSVReader implements CMFileReader<AbstractSearchObj> {
     private String file = StringUtils.EMPTY;
 
     private String separator = ",";

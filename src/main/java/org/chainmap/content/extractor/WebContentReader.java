@@ -16,13 +16,13 @@ import java.util.List;
  * Created by xingfeiy on 7/5/18.
  */
 public class WebContentReader implements CMFileReader<WebContent> {
-    private String path = "";
+    protected String path = "";
 
-    private String category = "";
+    protected String category = "";
 
-    private List<WebContent> container = new ArrayList<>();;
+    protected List<WebContent> container = new ArrayList<>();;
 
-    private int curIndex = 0;
+    protected int curIndex = 0;
 
 
     public WebContentReader(String path) {
@@ -36,7 +36,7 @@ public class WebContentReader implements CMFileReader<WebContent> {
         parse();
     }
 
-    private void parse() {
+    protected void parse() {
         Path path = Paths.get(this.path);
         if (Files.isDirectory(path)) {
             //Iterate directory
@@ -61,7 +61,7 @@ public class WebContentReader implements CMFileReader<WebContent> {
         }
     }
 
-    private WebContent parse(Path file) {
+    protected WebContent parse(Path file) {
         BufferedReader br;
         WebContent webContent = new WebContent();
         try {

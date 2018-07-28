@@ -14,6 +14,6 @@ public class WebContentIndexer extends AbstractContentIndexer<WebContent> {
 
     @Override
     protected void indexDoc(WebContent obj, SolrInputDocument doc) {
-//        doc.addField("url", obj.url);
+        doc.addField("date", obj.date);
     }
 }

@@ -7,6 +7,7 @@ import org.chainmap.content.extractor.PDFReader;
 import org.chainmap.content.extractor.WebContentReader;
 import org.chainmap.content.extractor.CSVReader;
 import org.chainmap.content.datatype.AbstractSearchObj;
+import org.chainmap.content.extractor.WebNewReader;
 import org.chainmap.content.parser.*;
 
 import java.io.IOException;
@@ -43,33 +44,41 @@ public class SimpleIndexer {
 //        String urlString = "http://localhost:8983/solr/chainmap";
         final SolrClient solr = new HttpSolrClient.Builder(urlString).build();
 
-        indexCryptoCSVInfos("/Users/xingfeiy/githup/chainmap/chainmap/resources/cryptolist/Crypto Companies.csv",
-                new CryptoCompanyInfoIndexer(solr), new CryptoCompanyParser());
+//        indexCryptoCSVInfos("/Users/xingfeiy/githup/chainmap/chainmap/resources/cryptolist/Crypto Companies.csv",
+//                new CryptoCompanyInfoIndexer(solr), new CryptoCompanyParser());
+//
+//        indexCryptoCSVInfos("/Users/xingfeiy/githup/chainmap/chainmap/resources/cryptolist/Crypto Events.csv",
+//                new CryptoEventIndexer(solr), new CryptoEventParser());
+//
+//        indexCryptoCSVInfos("/Users/xingfeiy/githup/chainmap/chainmap/resources/cryptolist/Crypto ICOs.csv",
+//                new CryptoICOIndexer(solr), new CryptoICOParser());
+//
+//        WebContentReader webContentReader = new WebContentReader("/Users/xingfeiy/githup/chainmap/cmp/search-engine/resources/articles", "article");
+//        WebContentIndexer indexer = new WebContentIndexer(solr);
+//        while (webContentReader.hasNext()) {
+//            indexer.indexDoc(webContentReader.next());
+//        }
+//
+//        webContentReader = new WebContentReader("/Users/xingfeiy/githup/chainmap/cmp/search-engine/resources/jobs", "job");
+//        indexer = new WebContentIndexer(solr);
+//        while (webContentReader.hasNext()) {
+//            indexer.indexDoc(webContentReader.next());
+//        }
+//
+//        PDFReader pdfReader = new PDFReader("/Users/xingfeiy/githup/chainmap/chainmap/resources/whitepapers", "white_paper");
+//        GeneralPDFIndexer pdfIndexer = new GeneralPDFIndexer(solr);
+//        while (pdfReader.hasNext()) {
+//            pdfIndexer.indexDoc(pdfReader.next());
+//        }
 
-        indexCryptoCSVInfos("/Users/xingfeiy/githup/chainmap/chainmap/resources/cryptolist/Crypto Events.csv",
-                new CryptoEventIndexer(solr), new CryptoEventParser());
 
-        indexCryptoCSVInfos("/Users/xingfeiy/githup/chainmap/chainmap/resources/cryptolist/Crypto ICOs.csv",
-                new CryptoICOIndexer(solr), new CryptoICOParser());
-
-        WebContentReader webContentReader = new WebContentReader("/Users/xingfeiy/githup/chainmap/cmp/search-engine/resources/articles", "article");
+        WebNewReader newsReader = new WebNewReader("/Users/xingfeiy/githup/Chainmap-2018/data-warehouse/articlesdata", "news");
         WebContentIndexer indexer = new WebContentIndexer(solr);
-        while (webContentReader.hasNext()) {
-            indexer.indexDoc(webContentReader.next());
+        while (newsReader.hasNext()) {
+            indexer.indexDoc(newsReader.next());
         }
-
-        webContentReader = new WebContentReader("/Users/xingfeiy/githup/chainmap/cmp/search-engine/resources/jobs", "job");
-        indexer = new WebContentIndexer(solr);
-        while (webContentReader.hasNext()) {
-            indexer.indexDoc(webContentReader.next());
-        }
-
-        PDFReader pdfReader = new PDFReader("/Users/xingfeiy/githup/chainmap/chainmap/resources/whitepapers", "white_paper");
-        GeneralPDFIndexer pdfIndexer = new GeneralPDFIndexer(solr);
-        while (pdfReader.hasNext()) {
-            pdfIndexer.indexDoc(pdfReader.next());
-        }
-
+//
+//        solr.deleteByQuery("category:news");
 
 
 

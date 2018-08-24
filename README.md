@@ -15,6 +15,7 @@ If you have any json files want to be searchable, just need put your files under
 - date (required, please use standand date format)
 
 Example:
+
 {
 "date": "2018-08-02 01:17:19.0",
 "question_category": "Ethereum",

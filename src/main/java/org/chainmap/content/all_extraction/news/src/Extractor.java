@@ -83,11 +83,13 @@ public class Extractor {
 			    {
 				    
 				    jo.put("search_content", TextExtractor.extract(url));
+				    filepath = folder + TitleExtractor.extract(url).replaceAll("[^A-Za-z0-9]", "") + ".json";
 				    
-			    	BufferedWriter out = new BufferedWriter(new FileWriter(folder + TitleExtractor.extract(url).replaceAll("[^A-Za-z0-9]", "") + ".json"));
+			    	BufferedWriter out = new BufferedWriter(new FileWriter(filepath));
 						 
 					out.write(jo.toJSONString());
 					out.close();
+					System.out.println("extracting to..."+filepath);
 			    }
 			    catch(Exception e)
 			    {

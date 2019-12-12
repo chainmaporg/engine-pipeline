@@ -11,11 +11,15 @@ public class GoogleArticleFinder {
 	{
 		SearchQuery query = new SearchQuery.Builder("blockchain")
 			    //.site("")
-				.numResults(num * 3).build();
+				.numResults(num).build();
 		SearchConfig config = new SearchConfig();
-		config.setGOOGLE_SEARCH_URL_PREFIX("https://www.google.com/search?hl=en&");
+		config.setGOOGLE_SEARCH_URL_PREFIX("https://www.google.com/search?hl=en&tbm=nws&");
 		SearchResult result = new GoogleWebSearch(config).search(query);
-		return result.getUrls();
+		List<String> urls = result.getUrls();
+		for (String url: urls) {
+			System.out.println("GoogleArticleFinder...url="+url);
+		}
+		return urls;
 		
 	}
 }
